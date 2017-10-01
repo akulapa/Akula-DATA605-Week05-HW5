@@ -65,10 +65,10 @@ Let plot the area on a two-dimensional graph using 10000 observations. We are in
 sumCoordinates <- function(x,y){return(x + y<0.5)}
 
 #get true if sum of the coordinates is less than 0.5
-output <- sumCoordinates(bc[,1], bc[,2])
+outputbplusc <- sumCoordinates(bc[,1], bc[,2])
 
-plot(x=bc[!output,1], y=bc[!output,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
-points(bc[output,1], bc[output,2], col='green', pch=20)
+plot(x=bc[!outputbplusc,1], y=bc[!outputbplusc,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
+points(bc[outputbplusc,1], bc[outputbplusc,2], col='green', pch=20)
 ```
 
 Let event$(E)$ represent selection of coordinates$(x,y)$ and sum of the $x$ and $y$ being less than 0.5
@@ -90,7 +90,7 @@ Hence mathematically, probability of sum of selected coordinates$(x,y)$ being le
 ```{r, echo=T}
 #for a sample of 10000 rows check number of coordinates sum is less than 0.5
 #since output holds true or false values, it returns only true values
-positives <- length(bc[output,1])
+positives <- length(bc[outputbplusc,1])
 
 #probability
 prob <- positives/n
@@ -105,10 +105,10 @@ For a sample of 10000 observations, the probability of the sum of selected coord
 prodCoordinates <- function(x,y){return((x * y)<0.5)}
 
 #get true if sum of the coordinates is less than 0.5
-output <- prodCoordinates(bc[,1], bc[,2])
+outputbtimesc <- prodCoordinates(bc[,1], bc[,2])
 
-plot(x=bc[!output,1], y=bc[!output,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
-points(bc[output,1], bc[output,2], col='green', pch=20)
+plot(x=bc[!outputbtimesc,1], y=bc[!outputbtimesc,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
+points(bc[outputbtimesc,1], bc[outputbtimesc,2], col='green', pch=20)
 ```
 
 Let event$(E)$ represent selection of coordinates$(x,y)$ and product of the $x$ and $y$ being less than 0.5
@@ -132,7 +132,7 @@ Hence mathematically, probability of product of selected coordinates$(x,y)$ bein
 ```{r, echo=T}
 #for a sample of 10000 rows check number of coordinates sum is less than 0.5
 #since output holds true or false values, it returns only true values
-positives <- length(bc[output,1])
+positives <- length(bc[outputbtimesc,1])
 
 #probability
 prob <- positives/n
@@ -147,10 +147,10 @@ For a sample of 10000 observations, the probability of product of selected coord
 diffCoordinates <- function(x,y){return(abs(x - y)<0.5)}
 
 #get true if sum of the coordinates is less than 0.5
-output <- diffCoordinates(bc[,1], bc[,2])
+outputabsbminusc <- diffCoordinates(bc[,1], bc[,2])
 
-plot(x=bc[!output,1], y=bc[!output,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
-points(bc[output,1], bc[output,2], col='green', pch=20)
+plot(x=bc[!outputabsbminusc,1], y=bc[!outputabsbminusc,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
+points(bc[outputabsbminusc,1], bc[outputabsbminusc,2], col='green', pch=20)
 ```
 
 Let event$(E)$ represent selection of coordinates$(x,y)$ and absolute difference between $x$ and $y$ being less than 0.5
@@ -168,7 +168,7 @@ Hence mathematically, probability of absolute difference of selected coordinates
 ```{r, echo=T}
 #for a sample of 10000 rows check number of coordinates sum is less than 0.5
 #since output holds true or false values, it returns only true values
-positives <- length(bc[output,1])
+positives <- length(bc[outputabsbminusc,1])
 
 #probability
 prob <- positives/n
@@ -182,15 +182,15 @@ For a sample of 10000 observations, the probability of an absolute difference of
 #create a function to check if sum is less than 0.5
 maxCoordinates <- function(x,y){return(max(x, y)<0.5)}
 
-output <- rep(TRUE, n)
+outputmaxbc <- rep(TRUE, n)
 #get true if sum of the coordinates is less than 0.5
 for (i in 1:n){
-  output[i] <- maxCoordinates(bc[i,1], bc[i,2])
+  outputmaxbc[i] <- maxCoordinates(bc[i,1], bc[i,2])
 }
 
 
-plot(x=bc[!output,1], y=bc[!output,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
-points(bc[output,1], bc[output,2], col='green', pch=20)
+plot(x=bc[!outputmaxbc,1], y=bc[!outputmaxbc,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
+points(bc[outputmaxbc,1], bc[outputmaxbc,2], col='green', pch=20)
 ```
 
 Let event$(E)$ represent selection of coordinates$(x,y)$ and maximum coordinate between $x$ and $y$ being less than 0.5
@@ -208,7 +208,7 @@ Hence mathematically, probability of maximum coordinate between selected coordin
 ```{r, echo=T}
 #for a sample of 10000 rows check number of coordinates sum is less than 0.5
 #since output holds true or false values, it returns only true values
-positives <- length(bc[output,1])
+positives <- length(bc[outputmaxbc,1])
 
 #probability
 prob <- positives/n
@@ -221,15 +221,15 @@ For a sample of 10000 observations, the probability of maximum coordinate betwee
 #create a function to check if sum is less than 0.5
 minCoordinates <- function(x,y){return(min(x, y)<0.5)}
 
-output <- rep(TRUE, n)
+outputminbc <- rep(TRUE, n)
 #get true if sum of the coordinates is less than 0.5
 for (i in 1:n){
-  output[i] <- minCoordinates(bc[i,1], bc[i,2])
+  outputminbc[i] <- minCoordinates(bc[i,1], bc[i,2])
 }
 
 
-plot(x=bc[!output,1], y=bc[!output,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
-points(bc[output,1], bc[output,2], col='green', pch=20)
+plot(x=bc[!outputminbc,1], y=bc[!outputminbc,2], xlab="x", ylab="y", col='blue', pch=20, xlim=c(0,1), ylim=c(0,1), asp=1)
+points(bc[outputminbc,1], bc[outputminbc,2], col='green', pch=20)
 ```
 
 Let event$(E)$ represent selection of coordinates$(x,y)$ and minimum coordinate between $x$ and $y$ being less than 0.5
@@ -247,12 +247,24 @@ Hence mathematically, probability of minimum coordinate between selected coordin
 ```{r, echo=T}
 #for a sample of 10000 rows check number of coordinates sum is less than 0.5
 #since output holds true or false values, it returns only true values
-positives <- length(bc[output,1])
+positives <- length(bc[outputminbc,1])
 
 #probability
 prob <- positives/n
 ```
 For a sample of 10000 observations, the probability of minimum coordinate between selected coordinates$(x,y)$ being less than $1/2$ is $`r prob`$.
+
+
+
+```{r,echo=T}
+par(mfrow=c(3,2))
+hist(bc[outputbplusc,1],main = 'Histogram of B+C < 0.5', xlab = '')
+hist(bc[outputbtimesc,1],main = 'Histogram of BC < 0.5', xlab = '')
+hist(bc[outputabsbminusc,1],main = 'Histogram of |B-C| < 0.5', xlab = '')
+hist(bc[outputmaxbc,1],main = 'Histogram of MAX(B,C) < 0.5', xlab = '')
+hist(bc[outputminbc,1],main = 'Histogram of MIN(B,C) < 0.5', xlab = '')
+```
+
 
 
 References:
